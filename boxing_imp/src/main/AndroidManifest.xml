@@ -13,13 +13,13 @@
             android:name=".ui.BoxingActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/Boxing.AppTheme.NoActionBar"></activity>
+            android:theme="@style/Boxing.AppTheme.NoActionBar" />
 
         <activity
             android:name=".ui.BoxingViewActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/Boxing.AppTheme.NoActionBar"></activity>
+            android:theme="@style/Boxing.AppTheme.NoActionBar" />
 
     </application>
 

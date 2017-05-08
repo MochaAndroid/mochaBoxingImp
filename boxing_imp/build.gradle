@@ -10,7 +10,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
-        versionName "1.0"
+        versionName "0.1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -38,4 +38,78 @@ dependencies {
     }
     compile 'com.bilibili:boxing:0.7.0'
     compile 'com.android.support:recyclerview-v7:25.3.0'
+}
+
+def siteUrl = "https://github.com/MochaAndroid/mochaBoxingImp"
+def gitUrl = "https://github.com/MochaAndroid/mochaBoxingImp.git"
+
+group = "com.mocha"
+version = "0.1.0"
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper paramters
+        pom.project {
+            packaging 'aar'
+
+            // Add your description here
+            name 'boxing-impl'
+            url siteUrl
+
+            // Set your license
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                }
+            }
+
+            developers {
+                developer {
+                    id 'ijays7'
+                    name 'ijays7'
+                    email 'ijaysdev@gmail.com'
+                }
+            }
+
+            scm {
+                connection gitUrl
+                developerConnection gitUrl
+                url siteUrl
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.sourceFiles
+    classifier = 'sources'
+}
+
+artifacts {
+    archives sourcesJar
+}
+
+//Properties properties = new Properties()
+//if (project.rootProject.findProject('local.properties') != null) {
+//    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+//    println "*****************************************************************************//*\n/\n/\n/\n/\n/\n"
+//}
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+
+    pkg {
+        repo = "maven"
+        name = "boxing-impl"
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
 }
