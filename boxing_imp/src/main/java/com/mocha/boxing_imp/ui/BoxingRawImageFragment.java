@@ -56,25 +56,25 @@ public class BoxingRawImageFragment extends BoxingBaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_boxing_raw_image, container, false);
-    }
-
-    @Override
-    public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_boxing_raw_image, container, false);
         mProgress = (ProgressBar) view.findViewById(R.id.loading);
         mImageView = (PhotoView) view.findViewById(R.id.photo_view);
         mAttacher = new PhotoViewAttacher(mImageView);
         mAttacher.setRotatable(true);
         mAttacher.setToRightAngle(true);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Point point = getResizePointer(mMedia.getSize());
+        ((AbsBoxingViewActivity) getActivity()).loadRawImage(mImageView, mMedia.getPath(), point.x,
+                point.y, new BoxingCallback(this));
     }
 
     @Override
     void setUserVisibleCompat(boolean isVisibleToUser) {
-        if (isVisibleToUser) {
-            Point point = getResizePointer(mMedia.getSize());
-            ((AbsBoxingViewActivity) getActivity()).loadRawImage(mImageView, mMedia.getPath(), point.x, point.y, new BoxingCallback(this));
-        }
     }
 
     /**

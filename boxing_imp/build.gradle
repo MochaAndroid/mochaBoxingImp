@@ -3,12 +3,12 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 23
     buildToolsVersion "25.0.2"
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 23
         versionCode 3
         versionName "0.2.1"
 
@@ -28,16 +28,17 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.0'
-    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.3.0'
 
     compile('com.chensl.rotatephotoview:rotatephotoview:1.0.5') {
-        exclude group: 'com.android.support', module: 'appcompat'
-        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support'
         exclude module: 'recyclerview-v7'
     }
-    compile 'com.bilibili:boxing:0.7.0'
-    compile 'com.android.support:recyclerview-v7:25.3.0'
+    compile('com.bilibili:boxing:0.7.0') {
+        exclude group: 'com.android.support'
+    }
+
+    compile 'com.android.support:recyclerview-v7:23.3.0'
 }
 
 def siteUrl = "https://github.com/MochaAndroid/mochaBoxingImp"
