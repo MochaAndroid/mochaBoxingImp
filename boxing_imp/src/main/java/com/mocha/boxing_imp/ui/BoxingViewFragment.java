@@ -91,10 +91,12 @@ public class BoxingViewFragment extends AbsBoxingViewFragment implements View.On
     public void onRequestPermissionError(String[] permissions, Exception e) {
         if (permissions.length > 0) {
             if (permissions[0].equals(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                Toast.makeText(getContext(), R.string.boxing_storage_permission_deny, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.boxing_storage_permission_deny,
+                        Toast.LENGTH_SHORT).show();
                 showEmptyData();
-            } else if (permissions[0].equals(Manifest.permission.CAMERA)){
-                Toast.makeText(getContext(), R.string.boxing_camera_permission_deny, Toast.LENGTH_SHORT).show();
+            } else if (permissions[0].equals(Manifest.permission.CAMERA)) {
+                Toast.makeText(getContext(), R.string.boxing_camera_permission_deny,
+                        Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -302,9 +304,9 @@ public class BoxingViewFragment extends AbsBoxingViewFragment implements View.On
             mDialog.setIndeterminate(true);
             mDialog.setMessage(getString(R.string.boxing_handling));
         }
-       if (!mDialog.isShowing()) {
-           mDialog.show();
-       }
+        if (!mDialog.isShowing()) {
+            mDialog.show();
+        }
     }
 
     private void dismissProgressDialog() {
@@ -429,7 +431,11 @@ public class BoxingViewFragment extends AbsBoxingViewFragment implements View.On
             if (hasCropBehavior()) {
                 startCrop(media, IMAGE_CROP_REQUEST_CODE);
             } else {
-                onFinish(iMedias);
+//                onFinish(iMedias);
+
+                Boxing.get().withIntent(getActivity(), BoxingViewActivity.class, iMedias)
+                        .start(BoxingViewFragment.this, BoxingViewFragment.IMAGE_PREVIEW_REQUEST_CODE,
+                                BoxingConfig.ViewMode.PREVIEW);
             }
         }
     }

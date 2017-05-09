@@ -17,4 +17,6 @@
     <color name="boxing_black_alpha15">#26000000</color>
     <color name="boxing_black_alpha20">#33000000</color>
     <color name="boxing_black_alpha25">#3c000000</color>
+
+    <color name="title_color">#fafafa</color>
 </resources>

@@ -9,13 +9,13 @@ import android.support.v4.app.Fragment;
  */
 
 public class BoxingBaseFragment extends Fragment {
-    private boolean mNeedPendingUserVisibileHint;
+    private boolean mNeedPendingUserVisibleHint;
     private boolean mLastUserVisibleHint;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (mNeedPendingUserVisibileHint) {
+        if (mNeedPendingUserVisibleHint) {
             setUserVisibleCompat(mLastUserVisibleHint);
         }
     }
@@ -24,7 +24,7 @@ public class BoxingBaseFragment extends Fragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (getActivity() == null) {
-            mNeedPendingUserVisibileHint = true;
+            mNeedPendingUserVisibleHint = true;
             mLastUserVisibleHint = isVisibleToUser;
         } else {
             setUserVisibleCompat(isVisibleToUser);

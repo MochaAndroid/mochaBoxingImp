@@ -35,6 +35,7 @@ import java.util.List;
  */
 public class BoxingViewActivity extends AbsBoxingViewActivity {
     public static final String EXTRA_TYPE_BACK = "com.bilibili.boxing_impl.ui.BoxingViewActivity.type_back";
+    static final String EXTRA_RESULT = "com.bilibili.boxing.Boxing.result";
 
     HackyViewPager mGallery;
     ProgressBar mProgressBar;
@@ -75,7 +76,8 @@ public class BoxingViewActivity extends AbsBoxingViewActivity {
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+//                onBackPressed();
+                finish();
             }
         });
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -102,17 +104,27 @@ public class BoxingViewActivity extends AbsBoxingViewActivity {
         mGallery.setAdapter(mAdapter);
         mGallery.addOnPageChangeListener(new OnPagerChangeListener());
         if (!mNeedEdit) {
-            View chooseLayout = findViewById(R.id.item_choose_layout);
-            chooseLayout.setVisibility(View.GONE);
+//            View chooseLayout = findViewById(R.id.item_choose_layout);
+//            chooseLayout.setVisibility(View.GONE);
         } else {
             setOkTextNumber();
-            mOkBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+
+        }
+        mOkBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!mNeedEdit) {
+                    Intent intent = new Intent();
+                    intent.putExtra(EXTRA_TYPE_BACK, false);
+                    intent.putParcelableArrayListExtra(Boxing.EXTRA_SELECTED_MEDIA, (ArrayList<BaseMedia>) mImages);
+                    setResult(RESULT_OK, intent);
+                    finish();
+
+                } else {
                     finishByBackPressed(false);
                 }
-            });
-        }
+            }
+        });
     }
 
     private void setOkTextNumber() {
@@ -191,7 +203,7 @@ public class BoxingViewActivity extends AbsBoxingViewActivity {
 
     private void setMenuIcon(boolean isSelected) {
         if (mNeedEdit) {
-            mSelectedMenuItem.setIcon(isSelected ? BoxingResHelper.getMediaCheckedRes(): BoxingResHelper.getMediaUncheckedRes());
+            mSelectedMenuItem.setIcon(isSelected ? BoxingResHelper.getMediaCheckedRes() : BoxingResHelper.getMediaUncheckedRes());
         }
     }
 
