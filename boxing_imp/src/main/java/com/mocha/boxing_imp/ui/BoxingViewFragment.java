@@ -431,11 +431,11 @@ public class BoxingViewFragment extends AbsBoxingViewFragment implements View.On
             if (hasCropBehavior()) {
                 startCrop(media, IMAGE_CROP_REQUEST_CODE);
             } else {
-//                onFinish(iMedias);
+                onFinish(iMedias);
 
-                Boxing.get().withIntent(getActivity(), BoxingViewActivity.class, iMedias)
-                        .start(BoxingViewFragment.this, BoxingViewFragment.IMAGE_PREVIEW_REQUEST_CODE,
-                                BoxingConfig.ViewMode.PREVIEW);
+//                Boxing.get().withIntent(getActivity(), BoxingViewActivity.class, iMedias)
+//                        .start(BoxingViewFragment.this, BoxingViewFragment.IMAGE_PREVIEW_REQUEST_CODE,
+//                                BoxingConfig.ViewMode.PREVIEW);
             }
         }
     }

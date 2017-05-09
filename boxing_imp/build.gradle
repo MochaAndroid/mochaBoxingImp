@@ -9,8 +9,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 2
-        versionName "0.2.0"
+        versionCode 3
+        versionName "0.2.1"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -44,7 +44,7 @@ def siteUrl = "https://github.com/MochaAndroid/mochaBoxingImp"
 def gitUrl = "https://github.com/MochaAndroid/mochaBoxingImp.git"
 
 group = "com.mocha"
-version = "0.2.0"
+version = "0.2.1"
 
 install {
     repositories.mavenInstaller {
