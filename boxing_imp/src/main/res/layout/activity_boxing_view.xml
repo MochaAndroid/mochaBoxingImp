@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:elevation="2dp"
         android:layout_height="?android:attr/actionBarSize"
-        app:theme="@style/Boxing.ToolbarTheme">
+        app:theme="@style/Boxing.AppTheme.NoActionBar">
 
         <TextView
             android:id="@+id/title"
