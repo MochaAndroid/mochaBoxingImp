@@ -9,8 +9,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 3
-        versionName "0.2.1"
+        versionCode 4
+        versionName "0.2.2"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -39,13 +39,14 @@ dependencies {
     }
 
     compile 'com.android.support:recyclerview-v7:23.3.0'
+    testCompile 'junit:junit:4.12'
 }
 
 def siteUrl = "https://github.com/MochaAndroid/mochaBoxingImp"
 def gitUrl = "https://github.com/MochaAndroid/mochaBoxingImp.git"
 
 group = "com.mocha"
-version = "0.2.1"
+version = "0.2.2"
 
 install {
     repositories.mavenInstaller {
