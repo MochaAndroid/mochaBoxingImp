@@ -12,7 +12,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bilibili.boxing.AbsBoxingViewActivity;
@@ -52,6 +54,7 @@ public class BoxingViewActivity extends AbsBoxingViewActivity {
 
     private String mAlbumId;
     private Toolbar mToolbar;
+    private TextView mTitleView;
     private ImagesAdapter mAdapter;
     private ImageMedia mCurrentImageItem;
     private Button mOkBtn;
@@ -70,17 +73,15 @@ public class BoxingViewActivity extends AbsBoxingViewActivity {
     }
 
     private void createToolbar() {
-        mToolbar = (Toolbar) findViewById(R.id.nav_top_bar);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        mTitleView = (TextView) findViewById(R.id.title);
+        ImageView imgBack= (ImageView) findViewById(R.id.img_back);
+        imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                onBackPressed();
                 finish();
             }
         });
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     private void initData() {
@@ -214,8 +215,10 @@ public class BoxingViewActivity extends AbsBoxingViewActivity {
             if (mStartPos > 0 && mStartPos < mSelectedImages.size()) {
                 mGallery.setCurrentItem(mStartPos, false);
             }
-            mToolbar.setTitle(getString(R.string.boxing_image_preview_title_fmt, String.valueOf(mStartPos + 1)
-                    , String.valueOf(mSelectedImages.size())));
+            if (mNeedEdit) {
+                mTitleView.setText(getString(R.string.boxing_image_preview_title_fmt, String.valueOf(mStartPos + 1)
+                        , String.valueOf(mSelectedImages.size())));
+            }
             mProgressBar.setVisibility(View.GONE);
             mGallery.setVisibility(View.VISIBLE);
             mAdapter.setMedias(mImages);
@@ -240,8 +243,8 @@ public class BoxingViewActivity extends AbsBoxingViewActivity {
         checkSelectedMedia(mImages, mSelectedImages);
         setupGallery();
 
-        if (mToolbar != null && mNeedAllCount) {
-            mToolbar.setTitle(getString(R.string.boxing_image_preview_title_fmt,
+        if (mTitleView != null && mNeedAllCount) {
+            mTitleView.setText(getString(R.string.boxing_image_preview_title_fmt,
                     String.valueOf(++mPos), String.valueOf(totalCount)));
             mNeedAllCount = false;
         }
@@ -316,8 +319,8 @@ public class BoxingViewActivity extends AbsBoxingViewActivity {
 
         @Override
         public void onPageSelected(int position) {
-            if (mToolbar != null && position < mImages.size()) {
-                mToolbar.setTitle(getString(R.string.boxing_image_preview_title_fmt, String.valueOf(position + 1)
+            if (mTitleView != null && position < mImages.size()) {
+                mTitleView.setText(getString(R.string.boxing_image_preview_title_fmt, String.valueOf(position + 1)
                         , mNeedLoading ? String.valueOf(mTotalCount) : String.valueOf(mImages.size())));
                 mCurrentImageItem = (ImageMedia) mImages.get(position);
                 invalidateOptionsMenu();

@@ -19,8 +19,8 @@
 
     <style name="Boxing.ToolbarTheme" parent="Boxing.AppTheme.NoActionBar" >
         <item name="titleTextColor">@color/boxing_black</item>
-        <item name="android:textColorSecondary">@color/boxing_black</item>
-        <item name="android:textColor">@color/boxing_black</item>
+        <item name="android:textColorSecondary">@color/boxing_black1</item>
+        <item name="android:textColor">@color/boxing_black1</item>
         <item name="android:background">@color/title_color</item>
     </style>
 

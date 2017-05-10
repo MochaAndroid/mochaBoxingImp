@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bilibili.boxing.AbsBoxingActivity;
@@ -45,11 +46,9 @@ public class BoxingActivity extends AbsBoxingActivity {
     }
 
     private void createToolbar() {
-        Toolbar bar = (Toolbar) findViewById(R.id.nav_top_bar);
-        setSupportActionBar(bar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        bar.setNavigationOnClickListener(new View.OnClickListener() {
+        ImageView bar = (ImageView) findViewById(R.id.img_back);
+
+        bar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
