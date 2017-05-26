@@ -6,12 +6,12 @@
 
 - gradle
 
-  ```groovy
+```groovy
    compile('com.mocha:boxing_imp:0.3.0') {
           exclude group: 'com.android.support'
           exclude module: 'recyclerview-v7'
       }
-  ```
+```
 
   为了不重复引用依赖，使用时可以排除掉support 包以及recyclerView。
 
